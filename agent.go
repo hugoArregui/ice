@@ -489,6 +489,8 @@ func (a *Agent) validateSelectedPair() bool {
 
 	if (a.connectionTimeout != 0) &&
 		(time.Since(a.selectedPair.remote.LastReceived()) > a.connectionTimeout) {
+		a.log.Warn("TIMEOUT")
+
 		a.selectedPair = nil
 		a.updateConnectionState(ConnectionStateDisconnected)
 		return false
